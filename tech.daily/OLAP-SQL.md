@@ -19,7 +19,7 @@ vendor.catelog.model
 SELECT 
     product_id.*
 FROM 
-   VENDER AppAnnie
+   VENDER ABC
 WHERE
     product_id.country_code = 'CN'
 ```
