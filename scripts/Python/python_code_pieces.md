@@ -141,3 +141,47 @@
         # {'a': {'1': 1, '3': 3, '2': 2}, 'l': [6, 7, 8, 9]}
 
     ```
+
+- Decorator is not built once then use it forever
+    ```python
+    def decorate_print(a, b):
+        print('decorate_print a = {}, b = {}'.format(a, b))
+        def _f(f):
+            print('_f a = {}, b = {}'.format(a, b))
+            def _wrapper(*args, **kwargs):
+                print('_wrapper a = {}, b = {}'.format(a, b))
+                return f(*args, **kwargs)
+            return _wrapper
+        return _f
+
+
+    def test(target_db, stmt, a=2, b=1):
+        @decorate_print(a=a, b=b)
+        def _test():
+            print('target_db = {}, stmt = {}'.format(target_db, stmt))
+
+        try:
+            res = _test()
+        except (NotImplementedError, Exception):
+            res = None
+        return res
+
+
+    if __name__ == '__main__':
+        test('int', 'this is a test', a=2, b=1)
+        test('float', 'another test', a=4, b=7)
+
+    ```
+
+    ```python
+    >> decorate_print a = 2, b = 1
+    >> _f a = 2, b = 1
+    >> _wrapper a = 2, b = 1
+    >> target_db = int, stmt = this is a test
+    >> decorate_print a = 4, b = 7
+    >> _f a = 4, b = 7
+    >> _wrapper a = 4, b = 7
+    >> target_db = float, stmt = another test
+    ```
+    From the output, we can see the decorator's code is executed every time the user uses it.
+
