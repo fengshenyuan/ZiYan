@@ -1,10 +1,8 @@
 # Queue & Asynchronous Task Orchestration System
-**Author: Yuan Guo**        
-
 This document is used to record the asynchronous task orchestration system learning notes.
 
 Target Systems
-* AA ATQ System
+* ABC ATQ System
 * Airbnb Airflow
 * AWS StepFunction
 * ...
