@@ -53,3 +53,14 @@
 eyJoaXN0b3J5IjpbMTg5ODYyNTE4NywxODAzOTc5NTQwLC03ND
 AyNzQ2NTIsLTc3NjgzNTQ4MSwxOTAzNTAyNjM5XX0=
 -->
+
+## Run Pylint With Scripts
+```python
+if __name__ == '__main__':
+    from pylint.lint import Run
+    try:
+        Run(['/path/to/your/code/repo/'])
+    except Exception as ex:
+        print ex
+    finally:
+        end = True
