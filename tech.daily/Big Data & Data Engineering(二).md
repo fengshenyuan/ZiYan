@@ -488,3 +488,6 @@ From The Modern Data Stack Ecosystem - Fall 2021 Edition
 
 [Modern Data Stack Tools](https://untitledfirm.com/modern-data-stack-tools/)
 ![image](https://user-images.githubusercontent.com/20035835/157275362-b2cbe693-1c28-4712-975b-0e39fbbb7d7d.png)
+
+[Emerging Architectures for Modern Data Infrastructure](https://future.a16z.com/emerging-architectures-modern-data-infrastructure/)
+![image](https://user-images.githubusercontent.com/20035835/160046764-805c8830-c464-489a-9986-54472861662f.png)
