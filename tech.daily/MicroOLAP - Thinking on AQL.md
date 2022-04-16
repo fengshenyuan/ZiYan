@@ -291,3 +291,9 @@ Candidates may include Spark Based Architecture, ClickHouse, Snowflake.
 - Snowflake is a cloud warehouse very similar
 - Presto is a data warehouse with the same arch but not impl with MS-Arch
 
+# Reference
+- [Data Mesh From an Engineering Perspective](https://www.datamesh-architecture.com/)
+
+**My Comment**
+> Summary In one word: Database/Warehouse ReImplementation Within the Microservice Theory. The problem with this architecture is when analyzing Cross-domain Data or joinings in the SQL world. MPP analytical engines like Presto and Snowflake already proved to handle it you need a powerful SQL engine so do the Data Mesh. If not, you probably will get a ClickHouse within Microservices.
+
