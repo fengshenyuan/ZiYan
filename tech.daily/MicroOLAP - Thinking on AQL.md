@@ -3,6 +3,16 @@
 - Second, improvements to the current implementation & the right way to do things correctly
 - Third, new solutions with open source technology.
 
+## Reading Summary of [How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html) 
+I have read the How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh article one year ago. Glad to see experts from the industry try to summary the thinkings & trends to a theory. 
+- The name Data Mesh actually is very interesting. It is obvious that it borrows some idea from the Micro-service and Kubernetes. My understanding is that this new conception or paradigm tries to decentralize the traditional data warehouse & data lake into the so called Distributed Domain Driven Architecture. 
+- A simple version of this is do what micro-service movement has done with a monolithic application in data side. 
+- If you treat the traditional data warehouse & data lake just as the monolithic application and each table in the data warehouse & data lake as a migrated micro-service, you may find something very interesting. That means in a higher abstract level application & data actually can be managed in the same pattern. 
+- And one thing I think ABC have done ahead of the industry is we already put the data mesh ideas into practice - the AQL.  Just as in micro-service world, after you split the application into lots of micro-services in dev side, you need an API Gateway to gather all the things back to provide a unified end-user experience of your original monolithic application. This is also true in data mesh - so we need Data Gateway. 
+- AQL can be viewed as a kind of Data Gateway but actually is higher level ‘Gateway’ than a traditional ‘Gateway’ - because it is a language - more flexible, easier to extend, easier to learn and maintenance.
+- So comes back the data mesh paradigm, the great series released in Martin Fowler’s website actually no more than theories but the whole industry lacks of practice and prototypes.  
+- From my perspective, AQL hasn’t reach all the goals mentioned in the articles but it does follow the principles and patterns and actually works very well in our cases. If you have more interesting in this topic, you can read one of notes on AQL wrote last year. It gives more details of my thinking of the AQL and the Data Mesh pattern.
+
 # Chapter 1: The Original of AQL
 AQL is a query language used in ABC. Just as other query languages, there is a data structure called ADM designed to work with AQL to form the complete scope of AQL based DB or OLAP functionalities.
 
