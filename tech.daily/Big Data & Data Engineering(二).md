@@ -413,7 +413,8 @@ Aigle Data & Data Mesh
 - [OLAP, what’s coming next?](https://www.sspaeti.com/blog/olap-whats-coming-next/)
 - [Building a Data Engineering Project in 20 Minutes](https://www.sspaeti.com/blog/data-engineering-project-in-twenty-minutes/)
 
-![image](/uploads/0d21c376986fd5add918fe8290cfe11d/image.png)
+![image](https://user-images.githubusercontent.com/20035835/163666155-5b207328-8cf2-4b96-a790-792c1f322fb7.png)
+
 
 # Sisence vs Tableau
 - [Sisense vs. Tableau: A Scalable Business Intelligence Comparison](https://technologyadvice.com/blog/information-technology/sisense-vs-tableau-comparison/)
@@ -491,3 +492,7 @@ From The Modern Data Stack Ecosystem - Fall 2021 Edition
 
 [Emerging Architectures for Modern Data Infrastructure](https://future.a16z.com/emerging-architectures-modern-data-infrastructure/)
 ![image](https://user-images.githubusercontent.com/20035835/160046764-805c8830-c464-489a-9986-54472861662f.png)
+
+
+# Data Mesh
+- [Data Mesh From an Engineering Perspective](https://www.datamesh-architecture.com/)
