@@ -1,5 +1,6 @@
 ## Spark底层最值得一读的论文
 - [Resilient Distributed Datasets: A fault-tolerant abstraction for in-Memory cluster computing 原版论文](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
+- [RDD论文中文翻译版：弹性分布式数据集：基于内存的集群计算的容错性抽象](https://fangmiao97.github.io/2019/04/13/tanslate-Resilient-Distributed-Datasets-A-Fault-Tolerant-Abstraction%E2%80%93for-In-Memory-Cluster-Computing/)
 - [入门必读 | Spark 论文导读 - 《Resilient Distributed Datasets: A fault-tolerant abstraction for in-Memory cluster computing》](https://zhuanlan.zhihu.com/p/102572842)
 - [Large-Scale Intelligent Microservices](https://arxiv.org/pdf/2009.08044.pdf) - Microsoft paper that presents an Apache Spark-based micro-service orchestration framework that extends database operations to include web service primitives.(跟我说的分布式数据库是一个更好的微服务体系相一致 - 分布式计算的核心范式转换经历了从数据库层不适用 -> 改造服务计算层(to Mircoservice Arch) -> 数据库层适应了分布式与云原生环境(Microservice为核心的架构转换回到以数据库为核心的架构上来) )
 
