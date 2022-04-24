@@ -146,3 +146,28 @@ Spark 之所以一开始就提供基于 Hash 的 Shuffle 实现机制，其主�
 Shuffle描述着数据从map task输出到reduce task输入的这段过程。shuffle是连接Map和Reduce之间的桥梁，Map的输出要用到Reduce中必须经过shuffle这个环节，shuffle的性能高低直接影响了整个程序的性能和吞吐量。因为在分布式情况下，reduce task需要跨节点去拉取其它节点上的map task结果。这一过程将会产生网络资源消耗和内存，磁盘IO的消耗。通常shuffle分为两部分：Map阶段的数据准备和Reduce阶段的数据拷贝处理。一般将在map端的Shuffle称之为Shuffle Write，在Reduce端的Shuffle称之为Shuffle Read.
 ...
 ```
+- [Spark内存管理与调优](https://www.cnblogs.com/frankdeng/p/9301783.html)
+![image](https://user-images.githubusercontent.com/20035835/164983943-d8bb3f70-d35d-49a5-a8f0-2ad3200aa8ad.png)
+
+- [Spark之开发调优以及资源调优](https://www.cnblogs.com/frankdeng/p/9301780.html)
+```
+Spark调优主要分为开发调优、资源调优、数据倾斜调优、shuffle调优几个部分。开发调优和资源调优是所有Spark作业都需要注意和遵循的一些基本原则，是高性能Spark作业的基础；数据倾斜调优，主要讲解了一套完整的用来解决Spark作业数据倾斜的解决方案；shuffle调优，面向的是对Spark的原理有较深层次掌握和研究的同学，主要讲解了如何对Spark作业的shuffle运行过程以及细节进行调优。
+
+本文作为Spark性能优化指南的基础篇，主要讲解开发调优以及资源调优。
+...
+```
+
+- [SparkSQL内核剖析](https://cloud.tencent.com/developer/news/841410)
+```
+SparkSQL提供了一个叫做 DataFrames 的可编程抽象数据模型，并且可被视为一个分布式的 SQL 查询引擎。对外提供 SQL 的操作方式主要为 JDBC 数据源，CLI shell 和 Programs 三种；而 SQL 解析，优化以及运行都是由 SparkSQL Catalyst 模块完成，最终转化为相应的 Spark Rdd 执行计算任务。
+```
+![image](https://user-images.githubusercontent.com/20035835/164983918-6c2e7507-e72b-4430-8c05-4912cf162375.png)
+
+- [别再人云亦云了！！！你真的搞懂了RDD、DF、DS的区别吗？](https://www.cnblogs.com/mr-bigdata/p/14426049.html)
+```
+写得真的好！
+```
+- [Spark中RDD、DataFrame和DataSet的区别 ？](https://codeantenna.com/a/lVaWJDkEFJ)
+```
+因为DataFrame和DataSet的API是建立在Spark SQL引擎之上的，无论是java、scala还是python，所有涉及到关系型查询的语句，都会经历相同的逻辑优化和执行计划。不同的是， Dataset[T]类的API更适合数据工程任务，Dataset[Row]（即DataFrame）类的API则更适合交互式分析。而且，spark作为一种编译器可以理解DataSet中的JVM对象，可以通过Tungsten编码，将这些对象进行快速的序列化和反序列化。
+```
