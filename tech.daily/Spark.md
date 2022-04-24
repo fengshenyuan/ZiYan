@@ -24,8 +24,120 @@ Spark Broadcast Join是一种分布式的多计算核心计算方案，这可以
 - [Snowflake、Delta Lake 两大新型数仓对比分析](https://zhuanlan.zhihu.com/p/350958074)
 
 ## Spark学习路径
-- RDD
-- RDD之Partition
-- Yarn集群运行环境详解
-- Spark任务的提交与运行
-- Spark Shuffle详解
+- [RDD](https://www.cnblogs.com/qingyunzong/p/8899715.html)
+```
+1.2　RDD的属性
+（1）一组分片（Partition），即数据集的基本组成单位。对于RDD来说，每个分片都会被一个计算任务处理，并决定并行计算的粒度。用户可以在创建RDD时指定RDD的分片个数，如果没有指定，那么就会采用默认值。默认值就是程序所分配到的CPU Core的数目。
+
+（2）一个计算每个分区的函数。Spark中RDD的计算是以分片为单位的，每个RDD都会实现compute函数以达到这个目的。compute函数会对迭代器进行复合，不需要保存每次计算的结果。
+
+（3）RDD之间的依赖关系。RDD的每次转换都会生成一个新的RDD，所以RDD之间就会形成类似于流水线一样的前后依赖关系。在部分分区数据丢失时，Spark可以通过这个依赖关系重新计算丢失的分区数据，而不是对RDD的所有分区进行重新计算。
+
+（4）一个Partitioner，即RDD的分片函数。当前Spark中实现了两种类型的分片函数，一个是基于哈希的HashPartitioner，另外一个是基于范围的RangePartitioner。只有对于于key-value的RDD，才会有Partitioner，非key-value的RDD的Parititioner的值是None。Partitioner函数不但决定了RDD本身的分片数量，也决定了parent RDD Shuffle输出时的分片数量。
+
+（5）一个列表，存储存取每个Partition的优先位置（preferred location）。对于一个HDFS文件来说，这个列表保存的就是每个Partition所在的块的位置。按照“移动数据不如移动计算”的理念，Spark在进行任务调度的时候，会尽可能地将计算任务分配到其所要处理数据块的存储位置。
+```
+- RDD各种算子
+```
+map(func)
+flatMap(func)
+mapPartitions(func)
+mapPartitionsWithIndex(func)
+...
+groupByKey([numTasks])
+reduceByKey(func, [numTasks])
+aggregateByKey(zeroValue)(seqOp, combOp, [numTasks])
+sortByKey([ascending], [numTasks])
+sortBy(func,[ascending], [numTasks])
+cogroup(otherDataset, [numTasks])
+coalesce(numPartitions)  ---> CoalescedRDD这个是什么？
+```
+- [RDD之Partition](https://blog.csdn.net/qq_22473611/article/details/107822168)
+```
+Spark学习之路 （十七）Spark分区
+https://www.cnblogs.com/qingyunzong/p/8987065.html
+....
+2. 为什么要进行分区
+　　数据分区，在分布式集群里，网络通信的代价很大，减少网络传输可以极大提升性能。mapreduce框架的性能开支主要在io和网络传输，io因为要大量读写文件，它是不可避免的，但是网络传输是可以避免的，把大文件压缩变小文件，   从而减少网络传输，但是增加了cpu的计算负载。
+
+　　Spark里面io也是不可避免的，但是网络传输spark里面进行了优化：
+
+　　Spark把rdd进行分区（分片），放在集群上并行计算。同一个rdd分片100个，10个节点，平均一个节点10个分区，当进行sum型的计算的时候，先进行每个分区的sum，然后把sum值shuffle传输到主程序进行全局sum，所以进行sum型计算对网络传输非常小。但对于进行join型的计算的时候，需要把数据本身进行shuffle，网络开销很大。
+
+spark是如何优化这个问题的呢？
+
+　　Spark把key－value rdd通过key的hashcode进行分区，而且保证相同的key存储在同一个节点上，这样对改rdd进行key聚合时，就不需要shuffle过程，我们进行mapreduce计算的时候为什么要进行shuffle？，就是说mapreduce里面网络传输主要在shuffle阶段，shuffle的根本原因是相同的key存在不同的节点上，按key进行聚合的时候不得不进行shuffle。shuffle是非常影响网络的，它要把所有的数据混在一起走网络，然后它才能把相同的key走到一起。要进行shuffle是存储决定的。
+
+　　Spark从这个教训中得到启发，spark会把key进行分区，也就是key的hashcode进行分区，相同的key，hashcode肯定是一样的，所以它进行分区的时候100t的数据分成10分，每部分10个t，它能确保相同的key肯定在一个分区里面，而且它能保证存储的时候相同的key能够存在同一个节点上。比如一个rdd分成了100份，集群有10个节点，所以每个节点存10份，每一分称为每个分区，spark能保证相同的key存在同一个节点上，实际上相同的key存在同一个分区。
+
+　　key的分布不均决定了有的分区大有的分区小。没法分区保证完全相等，但它会保证在一个接近的范围。所以mapreduce里面做的某些工作里边，spark就不需要shuffle了，spark解决网络传输这块的根本原理就是这个。
+
+　　进行join的时候是两个表，不可能把两个表都分区好，通常情况下是把用的频繁的大表事先进行分区，小表进行关联它的时候小表进行shuffle过程。
+
+　　大表不需要shuffle。
+　　
+
+　　需要在工作节点间进行数据混洗的转换极大地受益于分区。这样的转换是  cogroup，groupWith，join，leftOuterJoin，rightOuterJoin，groupByKey，reduceByKey，combineByKey 和lookup。
+
+　　分区是可配置的，只要RDD是基于键值对的即可。
+```
+- [Yarn集群运行环境详解](https://blog.csdn.net/qq_22473611/article/details/88640495)
+```
+YARN的出现，使得多个计算框架可以运行在一个集群当中。
+
+  1）每个应用程序对应一个ApplicationMaster。
+
+  2）目前可以支持多种计算框架运行在YARN上面比如MapReduce、Storm、Spark、Flink等。
+
+YARN作为一个资源调度平台。三个组件-ResourceManager, NodeManager以及ApplicationMaster，它们各自的职责。
+
+严格来说，YARN只包含两个组件，ResourceManager以及NodeManager。而ApplicationMaster只是一个YARN的客户端
+————————————————
+版权声明：本文为CSDN博主「四月天03」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_22473611/article/details/88640495
+```
+- [Spark任务的提交与运行 - 源码级解释](https://www.cnblogs.com/frankdeng/p/9301485.html)
+```
+一、Spark中的基本概念
+（1）Application：表示你的应用程序
+
+（2）Driver：表示main()函数，创建SparkContext。由SparkContext负责与ClusterManager通信，进行资源的申请，任务的分配和监控等。程序执行完毕后关闭SparkContext
+
+（3）Executor：某个Application运行在Worker节点上的一个进程，该进程负责运行某些task，并且负责将数据存在内存或者磁盘上。在Spark on Yarn模式下，其进程名称为 CoarseGrainedExecutor Backend，一个CoarseGrainedExecutor Backend进程有且仅有一个executor对象，它负责将Task包装成taskRunner，并从线程池中抽取出一个空闲线程运行Task，这样，每个CoarseGrainedExecutorBackend能并行运行Task的数据就取决于分配给它的CPU的个数。
+
+（4）Worker：集群中可以运行Application代码的节点。在Standalone模式中指的是通过slave文件配置的worker节点，在Spark on Yarn模式中指的就是NodeManager节点。
+
+（5）Task：在Executor进程中执行任务的工作单元，多个Task组成一个Stage
+
+（6）Job：包含多个Task组成的并行计算，是由Action行为触发的
+
+（7）Stage：每个Job会被拆分很多组Task，作为一个TaskSet，其名称为Stage
+
+（8）DAGScheduler：根据Job构建基于Stage的DAG，并提交Stage给TaskScheduler，其划分Stage的依据是RDD之间的依赖关系
+
+（9）TaskScheduler：将TaskSet提交给Worker（集群）运行，每个Executor运行什么Task就是在此处分配的。
+```
+
+```
+2.1　Spark的基本运行流程
+1、说明
+(1)构建Spark Application的运行环境（启动SparkContext），SparkContext向资源管理器（可以是Standalone、Mesos或YARN）注册并申请运行Executor资源；
+
+(2)资源管理器分配Executor资源并启动StandaloneExecutorBackend，Executor运行情况将随着心跳发送到资源管理器上；
+
+(3)SparkContext构建成DAG图，将DAG图分解成Stage，并把Taskset发送给Task Scheduler。Executor向SparkContext申请Task
+
+(4)Task Scheduler将Task发放给Executor运行同时SparkContext将应用程序代码发放给Executor。
+
+(5)Task在Executor上运行，运行完毕释放所有资源。
+```
+
+- [Spark Shuffle详解](https://www.cnblogs.com/itlz/p/15148079.html)
+```
+Spark Shuffle 分为两种：一种是基于 Hash 的 Shuffle；另一种是基于 Sort 的 Shuffle。先介绍下它们的发展历程，有助于我们更好的理解 Shuffle：
+
+在 Spark 1.1 之前， Spark 中只实现了一种 Shuffle 方式，即基于 Hash 的 Shuffle 。在 Spark 1.1 版本中引入了基于 Sort 的 Shuffle 实现方式，并且 Spark 1.2 版本之后，默认的实现方式从基于 Hash 的 Shuffle 修改为基于 Sort 的 Shuffle 实现方式，即使用的 ShuffleManager 从默认的 hash 修改为 sort。在 Spark 2.0 版本中， Hash Shuffle 方式己经不再使用。
+
+Spark 之所以一开始就提供基于 Hash 的 Shuffle 实现机制，其主要目的之一就是为了避免不需要的排序，大家想下 Hadoop 中的 MapReduce，是将 sort 作为固定步骤，有许多并不需要排序的任务，MapReduce 也会对其进行排序，造成了许多不必要的开销
+...
+```
