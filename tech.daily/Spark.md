@@ -22,3 +22,10 @@ Spark Broadcast Join是一种分布式的多计算核心计算方案，这可以
 数砖大佬们给 VLDB 投了一篇名为《Delta Lake: High-Performance ACID Table Storage overCloud Object Stores》的论文，并且被 VLDB 收录了，这是第一篇比较系统介绍数砖开发 Delta Lake 的论文
 - [全面介绍数砖开发 Delta Lake 的第一篇论文](https://www.sohu.com/a/431026284_315839)
 - [Snowflake、Delta Lake 两大新型数仓对比分析](https://zhuanlan.zhihu.com/p/350958074)
+
+## Spark学习路径
+- RDD
+- RDD之Partition
+- Yarn集群运行环境详解
+- Spark任务的提交与运行
+- Spark Shuffle详解
