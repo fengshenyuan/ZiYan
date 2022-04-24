@@ -171,3 +171,15 @@ SparkSQL提供了一个叫做 DataFrames 的可编程抽象数据模型，并且
 ```
 因为DataFrame和DataSet的API是建立在Spark SQL引擎之上的，无论是java、scala还是python，所有涉及到关系型查询的语句，都会经历相同的逻辑优化和执行计划。不同的是， Dataset[T]类的API更适合数据工程任务，Dataset[Row]（即DataFrame）类的API则更适合交互式分析。而且，spark作为一种编译器可以理解DataSet中的JVM对象，可以通过Tungsten编码，将这些对象进行快速的序列化和反序列化。
 ```
+- [Spark SQL知识点大全与实战](https://www.ikeguang.com/?p=1946)
+```
+Spark SQL是Spark用于结构化数据(structured data)处理的Spark模块。
+与基本的Spark RDD API不同，Spark SQL的抽象数据类型为Spark提供了关于数据结构和正在执行的计算的更多信息。
+在内部，Spark SQL使用这些额外的信息去做一些额外的优化，有多种方式与Spark SQL进行交互，比如: SQL和DatasetAPI。
+当计算结果的时候，使用的是相同的执行引擎，不依赖你正在使用哪种API或者语言。这种统一也就意味着开发者可以很容易在不同的API之间进行切换，这些API提供了最自然的方式来表达给定的转换。
+Hive是将Hive SQL转换成 MapReduce然后提交到集群上执行，大大简化了编写MapReduce的程序的复杂性，由于MapReduce这种计算模型执行效率比较慢。所以Spark SQL的应运而生，它是将Spark SQL转换成RDD，然后提交到集群执行，执行效率非常快！
+Spark SQL它提供了2个编程抽象，类似Spark Core中的RDD
+（1）DataFrame
+（2）Dataset
+...
+```
