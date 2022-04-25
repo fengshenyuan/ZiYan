@@ -163,7 +163,7 @@ Spark调优主要分为开发调优、资源调优、数据倾斜调优、shuffl
 ...
 ```
 
-- [SparkSQL内核剖析](https://cloud.tencent.com/developer/news/841410)
+- [SparkSQL内核剖析](https://xie.infoq.cn/article/2a70e9fb993bed9bc9ed02c46)
 ```
 SparkSQL提供了一个叫做 DataFrames 的可编程抽象数据模型，并且可被视为一个分布式的 SQL 查询引擎。对外提供 SQL 的操作方式主要为 JDBC 数据源，CLI shell 和 Programs 三种；而 SQL 解析，优化以及运行都是由 SparkSQL Catalyst 模块完成，最终转化为相应的 Spark Rdd 执行计算任务。
 ```
