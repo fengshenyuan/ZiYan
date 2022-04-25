@@ -81,6 +81,12 @@ spark是如何优化这个问题的呢？
 
 　　分区是可配置的，只要RDD是基于键值对的即可。
 ```
+
+- Spark RangerPartition
+  - [水塘抽样（Reservoir sampling）](https://juejin.cn/post/6844904045845413895)
+  - [Spark源码解读2之水塘抽样算法（Reservoir Sampling）](https://www.shangmayuan.com/a/86dd18a781a04d319ff28907.html)
+  - [Spark分区器HashPartitioner和RangePartitioner代码详解](https://www.iteblog.com/archives/1522.html)
+
 - [Yarn集群运行环境详解](https://blog.csdn.net/qq_22473611/article/details/88640495)
 ```
 YARN的出现，使得多个计算框架可以运行在一个集群当中。
@@ -183,3 +189,37 @@ Spark SQL它提供了2个编程抽象，类似Spark Core中的RDD
 （2）Dataset
 ...
 ```
+
+- [Spark数据倾斜处理](https://blog.csdn.net/kaede1209/article/details/81145560)
+```
+什么是数据倾斜
+数据倾斜是指我们在并行进行数据处理的时候，由于数据Spark的单个Partition)的分布不均，导致大量的数据集中分不到一台或者某几台计算节点上，导致处理速度远低于平均计算速度，从而拖延导致整个计算过程过慢，影响整个计算性能
+
+数据倾斜的危害
+单个或者某几个task拖延整个任务运行时间,导致整体耗时过大
+单个task处理数据过多，很容易导致oom
+Executor Kill lost,Shuffle error 
+数据倾斜的产生
+ 数据倾斜容易产生在两个过程，本身数据源读的倾斜，这个主要由于本身文件的分布不均，主要是不能切分的文件isSplitable=false 例如gz 另外的在shuffle阶段，key的分布不均，导致大量的数据集中到单个或者某几个task上导致数据整个stage，执行慢，影响整个job作业，总结主要有以下两个过程
+
+数据源数据文件不均匀
+计算过程中key的分布不均
+单个rdd中进行groupby 的时候key分布不均
+多个rdd进行join过程中key的不均匀
+
+————————————————
+版权声明：本文为CSDN博主「彩笔程序猿zxxxx」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/kaede1209/article/details/81145560
+```
+
+- [Spark性能优化之道——解决Spark数据倾斜（Data Skew）的N种姿势](http://www.jasongj.com/spark/skew/)
+```
+什么是数据倾斜
+对Spark/Hadoop这样的大数据系统来讲，数据量大并不可怕，可怕的是数据倾斜。
+
+何谓数据倾斜？数据倾斜指的是，并行处理的数据集中，某一部分（如Spark或Kafka的一个Partition）的数据显著多于其它部分，从而使得该部分的处理速度成为整个数据集处理的瓶颈。
+
+对于分布式系统而言，理想情况下，随着系统规模（节点数量）的增加，应用整体耗时线性下降。如果一台机器处理一批大量数据需要120分钟，当机器数量增加到三时，理想的耗时为120 / 3 = 40分钟，如下图所示
+```
+![image](https://user-images.githubusercontent.com/20035835/165014869-8047d0bb-2e2d-4aaf-890c-994fe5b275f3.png)
+
