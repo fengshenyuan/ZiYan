@@ -223,3 +223,5 @@ Executor Kill lost,Shuffle error
 ```
 ![image](https://user-images.githubusercontent.com/20035835/165014869-8047d0bb-2e2d-4aaf-890c-994fe5b275f3.png)
 
+- [Spark面试题整理](https://github.com/MoRan1607/BigDataGuide/tree/master/%E9%9D%A2%E8%AF%95/Spark%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86)
+
