@@ -87,6 +87,25 @@ spark是如何优化这个问题的呢？
   - [Spark源码解读2之水塘抽样算法（Reservoir Sampling）](https://www.shangmayuan.com/a/86dd18a781a04d319ff28907.html)
   - [Spark分区器HashPartitioner和RangePartitioner代码详解](https://www.iteblog.com/archives/1522.html)
 
+- [Spark广播变量&累加器](https://www.cnblogs.com/frankdeng/p/9301653.html)
+```
+# 广播变量注意事项
+1、能不能将一个RDD使用广播变量广播出去？不能，因为RDD是不存储数据的。可以将RDD的结果广播出去。
+2、 广播变量只能在Driver端定义，不能在Executor端定义。
+3、 在Driver端可以修改广播变量的值，在Executor端无法修改广播变量的值。
+4、如果executor端用到了Driver的变量，如果不使用广播变量在Executor有多少task就有多少Driver端的变量副本。
+5、如果Executor端用到了Driver的变量，如果使用广播变量在每个Executor中只有一份Driver端的变量副本。
+```
+![image](https://user-images.githubusercontent.com/20035835/165106168-bf3f2eb8-4dcd-4f36-95a6-2e21968673dd.png)
+
+```
+# 累加器注意事项
+1、 累加器在Driver端定义赋初始值，累加器只能在Driver端读取最后的值，在Excutor端更新。
+2、累加器不是一个调优的操作，因为如果不这样做，结果是错的
+```
+![image](https://user-images.githubusercontent.com/20035835/165106343-012ff696-d9b2-4029-8889-c9f74dec4503.png)
+
+
 - [Yarn集群运行环境详解](https://blog.csdn.net/qq_22473611/article/details/88640495)
 ```
 YARN的出现，使得多个计算框架可以运行在一个集群当中。
