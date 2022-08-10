@@ -11,3 +11,6 @@ link: https://www.kingname.info/2019/07/13/python-dict/
 link:
 - https://zhuanlan.zhihu.com/p/76965711 (用case语句实现pivot函数)
 - https://docs.snowflake.com/en/sql-reference/constructs/pivot.html
+
+## 数据分析SQL面试题目9套汇总
+https://zhuanlan.zhihu.com/p/88942950
