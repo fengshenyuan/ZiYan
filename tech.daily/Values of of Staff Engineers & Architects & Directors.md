@@ -38,3 +38,5 @@
     - 支持社交/支付/电商/社区/广告系统等各种应用场景的业务开发
     - 支持构建图像生成/图片美化/语音识别/文本检索/阅读理解/智能推荐等AI应用场景的业务开发
 
+
+![Archtecture of Real World Computer Science](https://user-images.githubusercontent.com/20035835/184520891-25e4e06f-9a91-4d2b-8149-4f358d1c262b.jpg)
