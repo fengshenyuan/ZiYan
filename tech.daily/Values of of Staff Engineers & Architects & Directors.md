@@ -1,4 +1,4 @@
-# Values of of Staff Engineers & Architects & Directors
+# Values of Staff Engineers & Architects & Directors
 作为一名职业研发人员，a senior engineer/architecture/director，要十分明确自己对于公司和团队的价值，并且要主动去发挥和实现自己的价值。这些价值包括但不限于以下方面：
 
 ### 1.帮助企业在云环境中将微服务架构及其他业界先进前沿技术落地，包括但不限于:
