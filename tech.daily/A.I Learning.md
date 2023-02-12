@@ -45,3 +45,13 @@ How to integrate all these abilities to build a full intelligence AI object?
 ## 案例与设想中的应用
 - [机器学习技术之预测性维护](infoq.cn/article/machine-learning-techniques-predictive-maintenance)
 - [工业4.0落地的最短路径：预测性维护](https://zhuanlan.zhihu.com/p/131284183)
+
+## 经典文章
+- [深度长文：NLP的巨人肩膀（上）](https://www.jiqizhixin.com/articles/2018-12-10-17)
+> CV的巨人肩膀  
+...
+特别值得一提的是 2012 年 Hinton 团队提出了 AlexNet，超过当时第二名效果 41%，一下子引爆了 AI 领域，因此 2012 年也被称为“深度学习元年”。
+...
+
+> 2018 年 9 月，DeepMind 主办的 Deep Learning Indaba 2018 大会在南非举行，ULMFit 的作者之一 Sebastian Ruder 在大会上做了一个很精彩的名为 Frontiers of Natural Language Processing 的报告，前后分为两个部分：第一部分梳理近些年 NLP 的发展；第二部分探讨了当前 NLP 遇到的一些困难。
+
