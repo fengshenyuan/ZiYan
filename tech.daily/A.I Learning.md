@@ -55,3 +55,5 @@ How to integrate all these abilities to build a full intelligence AI object?
 
 > 2018 年 9 月，DeepMind 主办的 Deep Learning Indaba 2018 大会在南非举行，ULMFit 的作者之一 Sebastian Ruder 在大会上做了一个很精彩的名为 Frontiers of Natural Language Processing 的报告，前后分为两个部分：第一部分梳理近些年 NLP 的发展；第二部分探讨了当前 NLP 遇到的一些困难。
 
+- [爆火的chatGPT，和它的前世今生](https://www.huxiu.com/article/733716.html)
+> 指明了前世今生的学习路径，2003的至少要从神经网络和深度学习开始！
