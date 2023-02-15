@@ -48,6 +48,7 @@ How to integrate all these abilities to build a full intelligence AI object?
 
 ## 经典文章
 - [深度长文：NLP的巨人肩膀（上）](https://www.jiqizhixin.com/articles/2018-12-10-17)
+- [深度长文：NLP 的巨人肩膀（下）- 从 CoVe 到 BERT](https://www.jiqizhixin.com/articles/2018-12-17-17)
 > CV的巨人肩膀  
 ...
 特别值得一提的是 2012 年 Hinton 团队提出了 AlexNet，超过当时第二名效果 41%，一下子引爆了 AI 领域，因此 2012 年也被称为“深度学习元年”。
