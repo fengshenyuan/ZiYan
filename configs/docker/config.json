@@ -1,0 +1,22 @@
+{
+    "insecure-registries": [
+        "registry-1.docker.io"
+    ],
+    "registry-mirrors": [
+        "https://mirror.iscas.ac.cn",
+        "https://docker.1panel.dev",
+        "https://docker.1panel.live",
+        "https://docker.rainbond.com",
+        "https://https://docker.nju.edu.cn/",
+        "https://docker-cf.registry.cyou",
+        "https://docker.m.daocloud.io",
+        "https://docker.anyhub.us.kg/",
+        "https://dockerhub.icu/",
+        "https://dockerpull.com/",
+        "https://dockerproxy.cn",
+        "https://dockerproxy.net",
+        "https://hub.rat.dev",
+        "https://docker.mrxn.net",
+        "https://doublezonline.cloud"
+    ]
+}
